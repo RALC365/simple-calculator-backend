@@ -23,6 +23,11 @@ app.use('/angularroutescripts', express.static(__dirname + '/node_modules/angula
 // Seteamos la ruta de la calculadora
 app.use('/', routes);
 
+//Página 404 - responde siempre y cuando no encuentre una ruta configurada
+app.use((req, res, next) => {
+  res.status(404).sendFile(__dirname + '/client/calculator/404.html')
+})
+
 //Iniciamos el servidor
 app.listen(port, (err) => {
   err
